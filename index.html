@@ -1,19 +1,13 @@
-<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>fupch</title>
-
 <style>
 html, body, canvas {
   height: 100%;
 }
 body {
   margin: 0;
-  8888888888888
-  <a href="/cesu.html">测速</a>
-  <a href="/2048.html">2048</a>
-  
 }
 canvas {
   display: block;
@@ -24,25 +18,29 @@ canvas {
 
 </head>
   
-<body><script src="/demos/googlegg.js"></script>
+<body>
+  
+  <a href="/cesu.html">测速</a>
+  <a href="/2048.html">2048</a>
+  
+  <script src="/demos/googlegg.js"></script>
+  <canvas></canvas>
 
-<canvas></canvas>
-
-<script>
-Object.getOwnPropertyNames(Math).map(function(p) {
-  window[p] = Math[p];
-});
-var rand = function(max, min, is_int) {
-  var max = (max - 1 || 0) + 1, 
+  <script>
+    Object.getOwnPropertyNames(Math).map(function(p) {
+     window[p] = Math[p];
+    });
+    var rand = function(max, min, is_int) {
+    var max = (max - 1 || 0) + 1, 
       min = min || 0, 
       gen = min + (max - min)*random();
   
-  return (is_int)?round(gen):gen;
-};
-var σ = function(c) {
-  return (random() < (c || .5))?-1:1;
-}
-var N_POLY = 32, 
+   return (is_int)?round(gen):gen;
+  };
+  var σ = function(c) {
+    return (random() < (c || .5))?-1:1;
+  }
+  var N_POLY = 32, 
     c = document.querySelector('canvas'), 
     ctx = c.getContext('2d'), 
     w = 150, h = 150, 
@@ -50,23 +48,23 @@ var N_POLY = 32,
     t = 0, r_id = null, 
     rep_pt = {'x': 0, 'y': 0}, 
     cutoff_d = 169;
-var Poly = function(n, R, o, φ, hue, v, af, ω) {
-  this.n = n || rand(7, 3, 1);
-  this.α = 2*PI/this.n;
-  this.R = R || rand(16, 8);
-  this.o = o || null;
-  this.φ = φ || rand(PI/2);
-  this.hue = hue || rand(360, 0, 1);
-  this.c = 'hsl(' + this.hue + ',100%,80%)';
-  this.v = v || null;
-  this.af = af || (25 - this.R)/250 - 1;
-  this.ω = ω || σ()*rand(2, .25)*PI/180;
-  this.vertices = [];
+  var Poly = function(n, R, o, φ, hue, v, af, ω) {
+    this.n = n || rand(7, 3, 1);
+    this.α = 2*PI/this.n;
+    this.R = R || rand(16, 8);
+    this.o = o || null;
+    this.φ = φ || rand(PI/2);
+    this.hue = hue || rand(360, 0, 1);
+    this.c = 'hsl(' + this.hue + ',100%,80%)';
+    this.v = v || null;
+    this.af = af || (25 - this.R)/250 - 1;
+    this.ω = ω || σ()*rand(2, .25)*PI/180;
+    this.vertices = [];
   
-  this.init = function() {
-    var θ = 0;
+    this.init = function() {
+     var θ = 0;
     
-    if(!this.o) {
+     if(!this.o) {
       this.o = {
         'x': rand(w - this.R, this.R, 1), 
         'y': rand(h - this.R, this.R, 1)
